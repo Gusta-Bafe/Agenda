@@ -14,9 +14,15 @@ class Login {
       this.erros = [];
       this.user = null;
     }
-    register(){
+   async register(){
       this.valida();
-      if(this.erros.length > 0) return;
+      if (this.erros.length > 0) return;
+
+      try{
+        this.user = await LoginModel.create(this.body)
+      } catch (err){
+        console.log(err)
+      }
     }
 
     valida() {
